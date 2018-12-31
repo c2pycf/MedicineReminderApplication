@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="8dip"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        style="@style/list_item"
+        android:id="@+id/item_title"
+        android:textSize="18dip"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/list_item"
+        android:id="@+id/item_details"
+        android:textSize="14dip"
+        android:textColor="@color/alarm_details" />
+
+</LinearLayout>

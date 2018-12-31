@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MedicineReminderApplication</string>
+    <string name="add_alarm">Add Alarm</string>
+    <string name="alarm_title_hint">Alarm Title</string>
+    <string name="alarm_active_switch">Active</string>
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+
+    <string-array name="occurence">
+        <item>Once</item>
+        <item>Weekly</item>
+    </string-array>
+
+
+</resources>
