@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,6 +40,7 @@ public class AlarmNotificationActivity extends AppCompatActivity {
     private DateTime mDateTime;
     private TextView mTextView;
     private PlayTimerTask mTimerTask;
+    private TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,17 @@ public class AlarmNotificationActivity extends AppCompatActivity {
         mRingtone = RingtoneManager.getRingtone(getApplicationContext(), mAlarmSound);
         if (mVibrate)
             mVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    int result = textToSpeech.setLanguage(Locale.US);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                        Log.i("TTS","Not supported");
+                }
+            }
+        });
 
         start(getIntent());
 
@@ -103,6 +117,9 @@ public class AlarmNotificationActivity extends AppCompatActivity {
         Log.i(TAG, "AlarmNotification.start('" + mAlarm.getTitle() + "')");
 
         mTextView.setText(mAlarm.getTitle());
+
+        textToSpeech.speak("It is time to do " + mAlarm.getTitle(), TextToSpeech.QUEUE_FLUSH, null);
+
 
         mTimerTask = new PlayTimerTask();
         mTimer = new Timer("Notify");
