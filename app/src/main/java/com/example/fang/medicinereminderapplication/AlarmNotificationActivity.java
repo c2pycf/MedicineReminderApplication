@@ -65,7 +65,7 @@ public class AlarmNotificationActivity extends AppCompatActivity {
         textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
+                if(status == TextToSpeech.SUCCESS) {
                     int result = textToSpeech.setLanguage(Locale.US);
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
