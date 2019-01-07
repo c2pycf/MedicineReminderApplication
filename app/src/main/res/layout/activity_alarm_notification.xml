@@ -36,7 +36,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:text="Dismiss"
-            android:onClick="onDismissClick" />
+             />
 
         <View
             android:layout_weight="1"
